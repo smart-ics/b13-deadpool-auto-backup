@@ -32,6 +32,9 @@ public partial class Form1 : Form
     private TimeSpan _diffBackupTime;
     private int _logBackupIntervalMinutes;
 
+    private int _degRotation;
+    private Image _deadpoolOri = (Image)Properties.Resources.deadpool2xb.Clone();
+
     private const string FULLDAY_BACKUP_DAY_DEFAULT = "0"; // Sunday
     private const string FULLDAY_BACKUP_HOUR_DEFAULT = "02:00:00";
     private const string DIFF_BACKUP_HOUR_DEFAULT = "03:00:00";
@@ -42,6 +45,7 @@ public partial class Form1 : Form
         InitializeComponent();
 
         ReadConfigurationSettings();
+
         _checkScheduleTimer = new System.Timers.Timer(1000);
         _checkScheduleTimer.Elapsed += CheckScheduleTimer_Elapsed;
         _checkScheduleTimer.AutoReset = true;
@@ -76,6 +80,7 @@ public partial class Form1 : Form
 
     private async void CheckScheduleTimer_Elapsed(object? sender, ElapsedEventArgs e)
     {
+
         DateTime now = DateTime.Now;
 
         if (now.DayOfWeek == _fullBackupDay && now.TimeOfDay >= _fullBackupTime && now.TimeOfDay < _fullBackupTime.Add(TimeSpan.FromMinutes(1)))
@@ -86,6 +91,12 @@ public partial class Form1 : Form
 
         else if ((now - _lastLogBackupTime).TotalMinutes >= _logBackupIntervalMinutes)
             await ExecuteBackup("LOG");
+
+        _degRotation += 6;
+        if (_degRotation > 360)
+            _degRotation = 0;
+
+        RotateImage(deadpoolPictureBox, _degRotation);
     }
 
     public void LogMessage(string message, Color? color = null)
@@ -486,6 +497,32 @@ public partial class Form1 : Form
             btnRestoreFailover.Enabled = true;
         }
     }
+
+    private void RotateImage(PictureBox pictureBox, float angle)
+    {
+        if (pictureBox.Image == null) return;
+
+        // Clone the original image to avoid "in use" exception
+        using (Bitmap original = new Bitmap(_deadpoolOri))
+        {
+            // Create a new empty bitmap to hold rotated image
+            Bitmap rotated = new Bitmap(original.Width, original.Height);
+            rotated.SetResolution(original.HorizontalResolution, original.VerticalResolution);
+
+            using (Graphics g = Graphics.FromImage(rotated))
+            {
+                g.TranslateTransform(rotated.Width / 2f, rotated.Height / 2f);
+                g.RotateTransform(angle);
+                g.TranslateTransform(-rotated.Width / 2f, -rotated.Height / 2f);
+
+                g.DrawImage(original, new Point(0, 0));
+            }
+
+            // Replace image in PictureBox
+            pictureBox.Image = rotated;
+        }
+    }
+
 }
 
 // Helper class to store backup file information

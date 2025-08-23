@@ -17,6 +17,7 @@
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             btnFullBackup = new Button();
             btnDiffBackup = new Button();
             btnLogBackup = new Button();
@@ -27,9 +28,9 @@
             label1 = new Label();
             label2 = new Label();
             lblStatus = new Label();
-            pictureBox1 = new PictureBox();
+            deadpoolPictureBox = new PictureBox();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)deadpoolPictureBox).BeginInit();
             SuspendLayout();
             // 
             // btnFullBackup
@@ -178,16 +179,16 @@
             lblStatus.Text = "[Status]";
             lblStatus.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // pictureBox1
+            // deadpoolPictureBox
             // 
-            pictureBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            pictureBox1.BackgroundImage = Properties.Resources.deadpool2x;
-            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox1.Location = new Point(318, 299);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(129, 126);
-            pictureBox1.TabIndex = 10;
-            pictureBox1.TabStop = false;
+            deadpoolPictureBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            deadpoolPictureBox.BackgroundImageLayout = ImageLayout.Stretch;
+            deadpoolPictureBox.Image = Properties.Resources.deadpool2xb;
+            deadpoolPictureBox.Location = new Point(319, 300);
+            deadpoolPictureBox.Name = "deadpoolPictureBox";
+            deadpoolPictureBox.Size = new Size(128, 128);
+            deadpoolPictureBox.TabIndex = 10;
+            deadpoolPictureBox.TabStop = false;
             // 
             // Form1
             // 
@@ -195,7 +196,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(54, 79, 107);
             ClientSize = new Size(453, 437);
-            Controls.Add(pictureBox1);
+            Controls.Add(deadpoolPictureBox);
             Controls.Add(lblStatus);
             Controls.Add(btnRestoreFailover);
             Controls.Add(btnRestoreProduction);
@@ -206,11 +207,12 @@
             Controls.Add(label1);
             Controls.Add(panel1);
             ForeColor = Color.Black;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             Text = "Deadpool - Auto Backup and One Click Restore";
             FormClosing += Form1_FormClosing;
             panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)deadpoolPictureBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -228,6 +230,6 @@
         private Label label1;
         private Label label2;
         private Label lblStatus;
-        private PictureBox pictureBox1;
+        private PictureBox deadpoolPictureBox;
     }
 }
