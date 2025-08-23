@@ -156,7 +156,7 @@ public partial class Form1 : Form
             }
             this.Invoke((MethodInvoker)delegate
             {
-                var log = $"{backupType} backup SUCCESS: {backupFileName}";
+                var log = $"Done: {backupFileName}";
                 LogMessage(log, color);
                 lblStatus.Text = $"Last {backupType} backup succeeded. {DateTime.Now:HH:mm:ss}";
             });
