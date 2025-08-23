@@ -17,115 +17,205 @@
 
         private void InitializeComponent()
         {
-            lblStatus = new Label();
-            rtbLog = new RichTextBox();
             btnFullBackup = new Button();
             btnDiffBackup = new Button();
             btnLogBackup = new Button();
             btnRestoreProduction = new Button();
             btnRestoreFailover = new Button();
+            panel1 = new Panel();
+            rtbLog = new RichTextBox();
+            label1 = new Label();
+            label2 = new Label();
+            lblStatus = new Label();
+            pictureBox1 = new PictureBox();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
-            // 
-            // lblStatus
-            // 
-            lblStatus.AutoSize = true;
-            lblStatus.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            lblStatus.Location = new Point(12, 9);
-            lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(45, 15);
-            lblStatus.TabIndex = 0;
-            lblStatus.Text = "Status:";
-            // 
-            // rtbLog
-            // 
-            rtbLog.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            rtbLog.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            rtbLog.Location = new Point(12, 37);
-            rtbLog.Name = "rtbLog";
-            rtbLog.Size = new Size(652, 252);
-            rtbLog.TabIndex = 1;
-            rtbLog.Text = "";
             // 
             // btnFullBackup
             // 
             btnFullBackup.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnFullBackup.Location = new Point(12, 295);
+            btnFullBackup.BackColor = Color.FromArgb(63, 193, 201);
+            btnFullBackup.FlatAppearance.BorderColor = Color.DimGray;
+            btnFullBackup.FlatAppearance.BorderSize = 2;
+            btnFullBackup.FlatStyle = FlatStyle.Flat;
+            btnFullBackup.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnFullBackup.ForeColor = Color.FromArgb(249, 250, 251);
+            btnFullBackup.Location = new Point(7, 327);
             btnFullBackup.Name = "btnFullBackup";
-            btnFullBackup.Size = new Size(120, 30);
-            btnFullBackup.TabIndex = 2;
-            btnFullBackup.Text = "Full Backup Now";
-            btnFullBackup.UseVisualStyleBackColor = true;
+            btnFullBackup.Size = new Size(122, 30);
+            btnFullBackup.TabIndex = 0;
+            btnFullBackup.Text = "Full Backup";
+            btnFullBackup.UseVisualStyleBackColor = false;
             btnFullBackup.Click += btnFullBackup_Click;
             // 
             // btnDiffBackup
             // 
             btnDiffBackup.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnDiffBackup.Location = new Point(138, 295);
+            btnDiffBackup.BackColor = Color.FromArgb(63, 193, 201);
+            btnDiffBackup.FlatAppearance.BorderColor = Color.DimGray;
+            btnDiffBackup.FlatAppearance.BorderSize = 2;
+            btnDiffBackup.FlatStyle = FlatStyle.Flat;
+            btnDiffBackup.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnDiffBackup.ForeColor = Color.FromArgb(249, 250, 251);
+            btnDiffBackup.Location = new Point(7, 363);
             btnDiffBackup.Name = "btnDiffBackup";
-            btnDiffBackup.Size = new Size(120, 30);
-            btnDiffBackup.TabIndex = 3;
-            btnDiffBackup.Text = "Diff Backup Now";
-            btnDiffBackup.UseVisualStyleBackColor = true;
+            btnDiffBackup.Size = new Size(122, 30);
+            btnDiffBackup.TabIndex = 1;
+            btnDiffBackup.Text = "Diff Backup";
+            btnDiffBackup.UseVisualStyleBackColor = false;
             btnDiffBackup.Click += btnDiffBackup_Click;
             // 
             // btnLogBackup
             // 
             btnLogBackup.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnLogBackup.Location = new Point(264, 295);
+            btnLogBackup.BackColor = Color.FromArgb(63, 193, 201);
+            btnLogBackup.FlatAppearance.BorderColor = Color.DimGray;
+            btnLogBackup.FlatAppearance.BorderSize = 2;
+            btnLogBackup.FlatStyle = FlatStyle.Flat;
+            btnLogBackup.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnLogBackup.ForeColor = Color.FromArgb(249, 250, 251);
+            btnLogBackup.Location = new Point(7, 398);
             btnLogBackup.Name = "btnLogBackup";
-            btnLogBackup.Size = new Size(120, 30);
-            btnLogBackup.TabIndex = 4;
-            btnLogBackup.Text = "Log Backup  Now";
-            btnLogBackup.UseVisualStyleBackColor = true;
+            btnLogBackup.Size = new Size(122, 30);
+            btnLogBackup.TabIndex = 2;
+            btnLogBackup.Text = "Log Backup";
+            btnLogBackup.UseVisualStyleBackColor = false;
             btnLogBackup.Click += btnLogBackup_Click;
             // 
             // btnRestoreProduction
             // 
-            btnRestoreProduction.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnRestoreProduction.BackColor = Color.FromArgb(192, 255, 192);
-            btnRestoreProduction.Location = new Point(390, 295);
+            btnRestoreProduction.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnRestoreProduction.BackColor = Color.FromArgb(252, 81, 133);
+            btnRestoreProduction.FlatAppearance.BorderColor = Color.DimGray;
+            btnRestoreProduction.FlatAppearance.BorderSize = 2;
+            btnRestoreProduction.FlatStyle = FlatStyle.Flat;
+            btnRestoreProduction.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnRestoreProduction.ForeColor = Color.FromArgb(248, 249, 250);
+            btnRestoreProduction.Location = new Point(141, 327);
             btnRestoreProduction.Name = "btnRestoreProduction";
-            btnRestoreProduction.Size = new Size(130, 30);
-            btnRestoreProduction.TabIndex = 5;
-            btnRestoreProduction.Text = "Restore to Production";
+            btnRestoreProduction.Size = new Size(122, 30);
+            btnRestoreProduction.TabIndex = 0;
+            btnRestoreProduction.Text = "Production";
             btnRestoreProduction.UseVisualStyleBackColor = false;
             btnRestoreProduction.Click += btnRestoreProduction_Click;
             // 
             // btnRestoreFailover
             // 
-            btnRestoreFailover.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnRestoreFailover.BackColor = Color.FromArgb(255, 224, 192);
-            btnRestoreFailover.Location = new Point(526, 295);
+            btnRestoreFailover.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnRestoreFailover.BackColor = Color.FromArgb(252, 81, 133);
+            btnRestoreFailover.FlatAppearance.BorderColor = Color.DimGray;
+            btnRestoreFailover.FlatAppearance.BorderSize = 2;
+            btnRestoreFailover.FlatStyle = FlatStyle.Flat;
+            btnRestoreFailover.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnRestoreFailover.ForeColor = Color.FromArgb(248, 249, 250);
+            btnRestoreFailover.Location = new Point(141, 363);
             btnRestoreFailover.Name = "btnRestoreFailover";
-            btnRestoreFailover.Size = new Size(138, 30);
-            btnRestoreFailover.TabIndex = 6;
-            btnRestoreFailover.Text = "Restore to Failover";
+            btnRestoreFailover.Size = new Size(122, 30);
+            btnRestoreFailover.TabIndex = 1;
+            btnRestoreFailover.Text = "Failover";
             btnRestoreFailover.UseVisualStyleBackColor = false;
             btnRestoreFailover.Click += btnRestoreFailover_Click;
+            // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.BackColor = Color.FromArgb(63, 193, 201);
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(rtbLog);
+            panel1.Location = new Point(6, 28);
+            panel1.Name = "panel1";
+            panel1.Padding = new Padding(6);
+            panel1.Size = new Size(441, 272);
+            panel1.TabIndex = 6;
+            // 
+            // rtbLog
+            // 
+            rtbLog.BackColor = Color.White;
+            rtbLog.BorderStyle = BorderStyle.None;
+            rtbLog.Dock = DockStyle.Fill;
+            rtbLog.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            rtbLog.Location = new Point(6, 6);
+            rtbLog.Name = "rtbLog";
+            rtbLog.ReadOnly = true;
+            rtbLog.Size = new Size(427, 258);
+            rtbLog.TabIndex = 3;
+            rtbLog.Text = "";
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label1.AutoSize = true;
+            label1.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.WhiteSmoke;
+            label1.Location = new Point(6, 309);
+            label1.Name = "label1";
+            label1.Size = new Size(93, 13);
+            label1.TabIndex = 7;
+            label1.Text = "Manual Backup";
+            // 
+            // label2
+            // 
+            label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label2.AutoSize = true;
+            label2.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.ForeColor = Color.WhiteSmoke;
+            label2.Location = new Point(141, 309);
+            label2.Name = "label2";
+            label2.Size = new Size(111, 13);
+            label2.TabIndex = 8;
+            label2.Text = "Restore To Server";
+            // 
+            // lblStatus
+            // 
+            lblStatus.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lblStatus.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            lblStatus.ForeColor = Color.WhiteSmoke;
+            lblStatus.Location = new Point(7, 2);
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new Size(440, 23);
+            lblStatus.TabIndex = 9;
+            lblStatus.Text = "[Status]";
+            lblStatus.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            pictureBox1.BackgroundImage = Properties.Resources.deadpool2x;
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox1.Location = new Point(318, 299);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(129, 126);
+            pictureBox1.TabIndex = 10;
+            pictureBox1.TabStop = false;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(676, 337);
+            BackColor = Color.FromArgb(54, 79, 107);
+            ClientSize = new Size(453, 437);
+            Controls.Add(pictureBox1);
+            Controls.Add(lblStatus);
             Controls.Add(btnRestoreFailover);
             Controls.Add(btnRestoreProduction);
+            Controls.Add(label2);
             Controls.Add(btnLogBackup);
             Controls.Add(btnDiffBackup);
             Controls.Add(btnFullBackup);
-            Controls.Add(rtbLog);
-            Controls.Add(lblStatus);
+            Controls.Add(label1);
+            Controls.Add(panel1);
+            ForeColor = Color.Black;
             Name = "Form1";
-            Text = "SQL Server Backup Scheduler";
+            Text = "Deadpool - Auto Backup and One Click Restore";
             FormClosing += Form1_FormClosing;
+            panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Label lblStatus;
-        private RichTextBox rtbLog;
         private Button btnFullBackup;
         private Button btnDiffBackup;
         private Button btnLogBackup;
@@ -133,5 +223,11 @@
         //private Button button2;
         private Button btnRestoreProduction;
         private Button btnRestoreFailover;
+        private Panel panel1;
+        private RichTextBox rtbLog;
+        private Label label1;
+        private Label label2;
+        private Label lblStatus;
+        private PictureBox pictureBox1;
     }
 }
