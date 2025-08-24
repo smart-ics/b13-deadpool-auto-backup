@@ -135,17 +135,15 @@ public partial class Form1 : Form
         color = color ?? Color.Black;
 
         // Remember the default font
-        Font regularFont = rtbLog.Font;               // Segoe UI (whatever the control is set to)
-        Font monoFont = new Font("Consolas",       // or "Courier New"
-                                    regularFont.Size, // keep the same size
-                                    FontStyle.Regular);
+        Font regularFont = rtbLog.Font;
+        Font monoFont = new("Consolas", regularFont.Size, FontStyle.Regular);
 
         rtbLog.SelectionStart = rtbLog.TextLength;
         rtbLog.SelectionLength = 0;
 
         // 1) Time stamp in monospace
         rtbLog.SelectionFont = monoFont;
-        rtbLog.SelectionColor = Color.Gray;          // or any colour you want
+        rtbLog.SelectionColor = Color.Gray;
         rtbLog.AppendText($"{DateTime.Now:HH:mm:ss} ");
 
         // 2) Message in the normal font
@@ -158,7 +156,7 @@ public partial class Form1 : Form
         rtbLog.SelectionFont = regularFont;
         rtbLog.ScrollToCaret();
 
-        monoFont.Dispose();   // tidy up if you create it every time
+        monoFont.Dispose();
     }
 
     private async Task ExecuteBackup(string backupType)

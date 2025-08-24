@@ -7,6 +7,9 @@
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<PackageIcon>deadpool2xb.png</PackageIcon>
+		<Copyright>@ICS, 2025</Copyright>
+		<AssemblyVersion>1.0.2</AssemblyVersion>
+		<FileVersion>1.0.2</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
