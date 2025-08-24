@@ -29,6 +29,7 @@
             label2 = new Label();
             lblStatus = new Label();
             deadpoolPictureBox = new PictureBox();
+            ShowBackupFileButton = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)deadpoolPictureBox).BeginInit();
             SuspendLayout();
@@ -135,7 +136,7 @@
             rtbLog.BackColor = Color.White;
             rtbLog.BorderStyle = BorderStyle.None;
             rtbLog.Dock = DockStyle.Fill;
-            rtbLog.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            rtbLog.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
             rtbLog.Location = new Point(6, 6);
             rtbLog.Name = "rtbLog";
             rtbLog.ReadOnly = true;
@@ -191,12 +192,30 @@
             deadpoolPictureBox.TabIndex = 10;
             deadpoolPictureBox.TabStop = false;
             // 
+            // ShowBackupFileButton
+            // 
+            ShowBackupFileButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            ShowBackupFileButton.BackColor = Color.FromArgb(252, 153, 51);
+            ShowBackupFileButton.FlatAppearance.BorderColor = Color.DimGray;
+            ShowBackupFileButton.FlatAppearance.BorderSize = 2;
+            ShowBackupFileButton.FlatStyle = FlatStyle.Flat;
+            ShowBackupFileButton.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            ShowBackupFileButton.ForeColor = Color.FromArgb(248, 249, 250);
+            ShowBackupFileButton.Location = new Point(141, 398);
+            ShowBackupFileButton.Name = "ShowBackupFileButton";
+            ShowBackupFileButton.Size = new Size(160, 30);
+            ShowBackupFileButton.TabIndex = 11;
+            ShowBackupFileButton.Text = "Show Backup Files";
+            ShowBackupFileButton.UseVisualStyleBackColor = false;
+            ShowBackupFileButton.Click += ShowBackupFileButton_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(54, 79, 107);
             ClientSize = new Size(453, 437);
+            Controls.Add(ShowBackupFileButton);
             Controls.Add(deadpoolPictureBox);
             Controls.Add(lblStatus);
             Controls.Add(btnRestoreFailover);
@@ -232,5 +251,6 @@
         private Label label2;
         private Label lblStatus;
         private PictureBox deadpoolPictureBox;
+        private Button ShowBackupFileButton;
     }
 }

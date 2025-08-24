@@ -52,7 +52,7 @@ public partial class Form1 : Form
         _checkScheduleTimer.Elapsed += CheckScheduleTimer_Elapsed;
         _checkScheduleTimer.AutoReset = true;
         _checkScheduleTimer.Start();
-
+        LogMessage($"Loaded config for {_dbName1} on {_dbServer1}. Monitoring started now...", Color.BlueViolet);
     }
 
     private void ReadConfigurationSettings()
@@ -104,11 +104,11 @@ public partial class Form1 : Form
         RotateImage(deadpoolPictureBox, _degRotation);
     }
 
-    public void LogMessage(string message, Color? color = null)
+    public void LogMessage2(string message, Color? color = null)
     {
         if (rtbLog.InvokeRequired)
         {
-            rtbLog.Invoke(new Action(() => LogMessage(message, color)));
+            rtbLog.Invoke(new Action(() => LogMessage2(message, color)));
             return;
         }
 
@@ -122,6 +122,43 @@ public partial class Form1 : Form
         rtbLog.ScrollToCaret();
 
         Application.DoEvents();
+    }
+
+    public void LogMessage(string message, Color? color = null)
+    {
+        if (rtbLog.InvokeRequired)
+        {
+            rtbLog.Invoke(new Action(() => LogMessage(message, color)));
+            return;
+        }
+
+        color = color ?? Color.Black;
+
+        // Remember the default font
+        Font regularFont = rtbLog.Font;               // Segoe UI (whatever the control is set to)
+        Font monoFont = new Font("Consolas",       // or "Courier New"
+                                    regularFont.Size, // keep the same size
+                                    FontStyle.Regular);
+
+        rtbLog.SelectionStart = rtbLog.TextLength;
+        rtbLog.SelectionLength = 0;
+
+        // 1) Time stamp in monospace
+        rtbLog.SelectionFont = monoFont;
+        rtbLog.SelectionColor = Color.Gray;          // or any colour you want
+        rtbLog.AppendText($"{DateTime.Now:HH:mm:ss} ");
+
+        // 2) Message in the normal font
+        rtbLog.SelectionFont = regularFont;
+        rtbLog.SelectionColor = color.Value;
+        rtbLog.AppendText($"{message}{Environment.NewLine}");
+
+        // Reset for next append
+        rtbLog.SelectionColor = rtbLog.ForeColor;
+        rtbLog.SelectionFont = regularFont;
+        rtbLog.ScrollToCaret();
+
+        monoFont.Dispose();   // tidy up if you create it every time
     }
 
     private async Task ExecuteBackup(string backupType)
@@ -464,7 +501,7 @@ public partial class Form1 : Form
                   $"Restore Path: {_productionRestorePath}\n\n" +
                   "Pastikan data di atas benar. Tekan OK untuk lanjut proses.";
         if (MessageBox.Show(msg, "Confirm Restore", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) != DialogResult.OK)
-            return; 
+            return;
 
         btnRestoreProduction.Enabled = false;
         try
@@ -531,6 +568,10 @@ public partial class Form1 : Form
         }
     }
 
+    private void ShowBackupFileButton_Click(object sender, EventArgs e)
+    {
+        Process.Start("explorer.exe", _backupPath);
+    }
 }
 
 // Helper class to store backup file information
