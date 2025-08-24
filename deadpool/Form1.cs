@@ -1,5 +1,6 @@
 using Microsoft.Data.SqlClient;
 using System.Configuration;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Text;
@@ -12,6 +13,7 @@ public partial class Form1 : Form
     // Timers for different backup types
     private readonly System.Timers.Timer _checkScheduleTimer;
     private DateTime _lastLogBackupTime = DateTime.MinValue;
+    private int _minuteHeartBeat = 0;
 
     // Configurable settings from App.config
     private string _dbServer1;
@@ -33,7 +35,7 @@ public partial class Form1 : Form
     private int _logBackupIntervalMinutes;
 
     private int _degRotation;
-    private Image _deadpoolOri = (Image)Properties.Resources.deadpool2xb.Clone();
+    private Image _deadpoolOri = (Image)Properties.Resources.arrow6_128.Clone();
 
     private const string FULLDAY_BACKUP_DAY_DEFAULT = "0"; // Sunday
     private const string FULLDAY_BACKUP_HOUR_DEFAULT = "02:00:00";
@@ -74,24 +76,27 @@ public partial class Form1 : Form
         _fullBackupTime = TimeSpan.Parse(ConfigurationManager.AppSettings["FullBackupTime"] ?? FULLDAY_BACKUP_HOUR_DEFAULT);
         _diffBackupTime = TimeSpan.Parse(ConfigurationManager.AppSettings["DiffBackupTime"] ?? DIFF_BACKUP_HOUR_DEFAULT);
         _logBackupIntervalMinutes = int.Parse(ConfigurationManager.AppSettings["LogBackupIntervalMinutes"] ?? LOG_BACKUP_INTERVAL_MINUTES_DEFAULT);
-
         lblStatus.Text = $"Loaded config for {_dbName1} on {_dbServer1}. Monitoring...";
+
     }
 
     private async void CheckScheduleTimer_Elapsed(object? sender, ElapsedEventArgs e)
     {
-
         DateTime now = DateTime.Now;
+        _minuteHeartBeat++;
+        if (_minuteHeartBeat == 60)
+        {
+            _minuteHeartBeat = 0;
 
-        if (now.DayOfWeek == _fullBackupDay && now.TimeOfDay >= _fullBackupTime && now.TimeOfDay < _fullBackupTime.Add(TimeSpan.FromMinutes(1)))
-            await ExecuteBackup("FULL");
+            if (now.DayOfWeek == _fullBackupDay && now.TimeOfDay >= _fullBackupTime && now.TimeOfDay < _fullBackupTime.Add(TimeSpan.FromMinutes(1)))
+                await ExecuteBackup("FULL");
 
-        else if (now.DayOfWeek != _fullBackupDay && now.TimeOfDay >= _diffBackupTime && now.TimeOfDay < _diffBackupTime.Add(TimeSpan.FromMinutes(1)))
-            await ExecuteBackup("DIFF");
+            else if (now.DayOfWeek != _fullBackupDay && now.TimeOfDay >= _diffBackupTime && now.TimeOfDay < _diffBackupTime.Add(TimeSpan.FromMinutes(1)))
+                await ExecuteBackup("DIFF");
 
-        else if ((now - _lastLogBackupTime).TotalMinutes >= _logBackupIntervalMinutes)
-            await ExecuteBackup("LOG");
-
+            else if ((now - _lastLogBackupTime).TotalMinutes >= _logBackupIntervalMinutes)
+                await ExecuteBackup("LOG");
+        }
         _degRotation += 6;
         if (_degRotation > 360)
             _degRotation = 0;
@@ -140,7 +145,7 @@ public partial class Form1 : Form
             case "LOG":
                 backupFileName = $"{_dbName1}_Log_{DateTime.Now:yyyyMMdd_HHmmss}.trn";
                 sqlCommandText = @$"BACKUP LOG [{_dbName1}] TO DISK = N'{Path.Combine(_backupPath, backupFileName)}' WITH COMPRESSION, STATS = 5;";
-                _lastLogBackupTime = DateTime.Now.AddMinutes(5); // Update the last run time
+                _lastLogBackupTime = DateTime.Now; // Update the last run time
                 break;
             default:
                 throw new ArgumentException("Invalid backup type.");
@@ -151,6 +156,9 @@ public partial class Form1 : Form
         this.Invoke((MethodInvoker)delegate
         {
             lblStatus.Text = $"Starting {backupType} backup... {DateTime.Now:HH:mm:ss}";
+            var log = $"Starting {backupType} backup... ";
+            LogMessage(log);
+
         });
 
         try
@@ -188,8 +196,8 @@ public partial class Form1 : Form
         this.Invoke((MethodInvoker)delegate
         {
             lblStatus.Text = $"Starting restore to {targetDbName} on {targetServer}... {DateTime.Now:HH:mm:ss}";
-            //var log = $"Starting restore to {targetDbName} on {targetServer}...";
-            //LogMessage(log, Color.Orange);
+            var log = $"Starting restore to {targetDbName} on {targetServer}...";
+            LogMessage(log, Color.Orange);
 
         });
 

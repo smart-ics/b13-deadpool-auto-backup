@@ -183,10 +183,11 @@
             // 
             deadpoolPictureBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             deadpoolPictureBox.BackgroundImageLayout = ImageLayout.Stretch;
-            deadpoolPictureBox.Image = Properties.Resources.deadpool2xb;
-            deadpoolPictureBox.Location = new Point(319, 300);
+            deadpoolPictureBox.Image = Properties.Resources.arrow6_128;
+            deadpoolPictureBox.Location = new Point(325, 312);
             deadpoolPictureBox.Name = "deadpoolPictureBox";
-            deadpoolPictureBox.Size = new Size(128, 128);
+            deadpoolPictureBox.Size = new Size(116, 116);
+            deadpoolPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             deadpoolPictureBox.TabIndex = 10;
             deadpoolPictureBox.TabStop = false;
             // 

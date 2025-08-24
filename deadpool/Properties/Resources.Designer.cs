@@ -63,6 +63,26 @@ namespace deadpool.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap app_icon3 {
+            get {
+                object obj = ResourceManager.GetObject("app_icon3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap arrow6_128 {
+            get {
+                object obj = ResourceManager.GetObject("arrow6_128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap deadpool2x {
             get {
                 object obj = ResourceManager.GetObject("deadpool2x", resourceCulture);
